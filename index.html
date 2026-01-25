@@ -4,131 +4,750 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards Kids Game - Fun and Educational Learning App for Kids</title>
-    <meta name="description" content="Cards Kids Game is the ultimate educational app designed to make learning fun and interactive for kids. Download now to engage your children in a playful and educational environment.">
+    <meta name="description" content="Cards Kids Game is the ultimate educational app designed to make learning fun and interactive for kids. Explore numbers, letters, shapes, fruits, countries, and more!">
     <meta name="keywords" content="Kids game, educational app, learning games, flashcards, alphabet, numbers, shapes, fruits, interactive learning, voice feedback, safe for kids, no ads">
     <meta name="author" content="Cards Kids Game">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://CardsKidsGame.github.io/">
-    
+    <link rel="canonical" href="https://cardskidsgame.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
-            display: flex;
-            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', Arial, sans-serif;
+            background: linear-gradient(180deg, #4a7c47 0%, #8b7355 25%, #c4785a 50%, #e8887a 75%, #f5a89a 100%);
             min-height: 100vh;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        .container {
-            flex: 1;
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding-bottom: 60px; /* Ensure there's space for the footer */
-        }
-        h1, h2 {
             color: #333;
         }
-        .features {
-            margin: 20px 0;
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(74, 124, 71, 0.95);
+            backdrop-filter: blur(10px);
         }
-        .features h2 {
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
         }
-        .feature-item {
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 20px 60px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: white;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .download-btn svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* App Screenshots Gallery */
+        .screenshots-section {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .screenshots-section h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .phone-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            perspective: 1000px;
+        }
+
+        .phone-mockup {
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transition: transform 0.5s;
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .phone-mockup.featured {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .phone-mockup.featured:hover {
+            transform: scale(1.15) translateY(-10px);
+        }
+
+        .phone-screen {
+            width: 220px;
+            height: 476px;
+            border-radius: 30px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #4a7c47 0%, #8b7355 25%, #c4785a 50%, #e8887a 75%, #f5a89a 100%);
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Categories Preview */
+        .categories-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .categories-section h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .categories-section > p {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 3px solid #1a1a1a;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-card h3 {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .features-section h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a7c47, #6ba368);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Game Modes Section */
+        .game-modes {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-modes h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .modes-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .mode-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .mode-card:hover {
+            transform: scale(1.05);
+        }
+
+        .mode-icon {
+            font-size: 4rem;
             margin-bottom: 20px;
         }
-        .download-link {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
+
+        .mode-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .mode-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Tab Preview */
+        .tab-preview {
+            display: inline-flex;
+            background: rgba(255,200,200,0.5);
+            border-radius: 25px;
+            padding: 8px;
+            margin-top: 20px;
+        }
+
+        .tab-item {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .tab-item.active {
+            background: rgba(255,100,100,0.3);
+            color: #1a73e8;
+        }
+
+        /* Safety Section */
+        .safety-section {
+            padding: 80px 20px;
             text-align: center;
-            background-color: #4CAF50;
+        }
+
+        .safety-section h2 {
             color: white;
-            padding: 15px;
-            text-decoration: none;
-            border-radius: 5px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-        .download-link:hover {
-            background-color: #45a049;
+
+        .safety-section > p {
+            color: white;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
         }
+
+        .safety-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .safety-badge {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .safety-badge span {
+            font-size: 2rem;
+        }
+
+        .safety-badge p {
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cta-section p {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
         footer {
-            background-color: #333;
+            background: rgba(0,0,0,0.3);
             color: white;
             text-align: center;
-            padding: 10px 0;
-            position: relative;
-            width: 100%;
+            padding: 30px 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .phone-mockup {
+                transform: scale(0.9);
+            }
+
+            .phone-mockup.featured {
+                transform: scale(1);
+            }
+
+            .categories-section h2,
+            .features-section h2,
+            .game-modes h2,
+            .safety-section h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .phone-screen {
+                width: 180px;
+                height: 390px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .phone-gallery {
+                gap: 15px;
+            }
+
+            .phone-mockup {
+                transform: scale(0.8);
+            }
+
+            .phone-screen {
+                width: 150px;
+                height: 325px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .category-card {
+                padding: 20px 15px;
+            }
+
+            .category-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Welcome to Cards Kids Game</h1>
-    <p>The ultimate educational app designed to make learning fun and interactive for kids!</p>
-</header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">Cards Kids Game</a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="README.html">Privacy</a></li>
+        </ul>
+    </nav>
 
-<div class="container">
-    <section class="features">
-        <h2>Features:</h2>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Cards Kids Game</h1>
+        <p>The ultimate educational app that makes learning fun! Help your kids explore numbers, letters, shapes, and more through interactive flashcards.</p>
+        <a href="https://apps.apple.com/ca/app/cards-kids-game/id6504603575" class="download-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Download on App Store
+        </a>
+    </section>
 
-        <div class="feature-item">
-            <h3>Interactive Learning</h3>
-            <p>Kids can explore and learn through interactive flashcards that cover essential educational topics such as numbers, letters, shapes, and fruits. Each card is designed with colorful graphics and engaging animations to capture children's attention and make learning enjoyable.</p>
-        </div>
-
-        <div class="feature-item">
-            <h3>PeekaPoo Game</h3>
-            <p>A unique game where kids can tap to reveal hidden fruits. Each tap reveals a random fruit emoji with its name, helping kids learn to identify different fruits in a fun way. The game includes a built-in timer to prevent rapid swiping, ensuring kids take their time to learn and recognize each fruit.</p>
-        </div>
-
-        <div class="feature-item">
-            <h3>Voice Feedback</h3>
-            <p>Integrated with a speech synthesizer, the app provides voice feedback for each card, helping kids with pronunciation and auditory learning. The voice feedback can be enabled or disabled based on user preferences, making it adaptable for different learning environments.</p>
-        </div>
-
-        <div class="feature-item">
-            <h3>User-Friendly Design</h3>
-            <p>The app features a clean and intuitive interface that is easy for kids to navigate. Large buttons and interactive elements ensure that children can use the app independently and confidently.</p>
-        </div>
-
-        <div class="feature-item">
-            <h3>Safe and Secure</h3>
-            <p>No ads, no in-app purchases, and no data collection ensure a safe and distraction-free learning experience for your kids. The app does not require any login or personal information, making it secure and straightforward to use.</p>
-        </div>
-
-        <div class="feature-item">
-            <h3>Customizable Settings</h3>
-            <p>Parents and educators can customize the app settings to suit the child's learning pace and needs. The app allows toggling sound feedback and adjusting the duration for which the fruit is revealed in the PeekaPoo game.</p>
+    <!-- Screenshots Gallery -->
+    <section class="screenshots-section" id="screenshots">
+        <h2>See It In Action</h2>
+        <div class="phone-gallery">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <img src="assets/screenshots/screenshot-1.png" alt="Cards Kids Game - Main Menu" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <img src="assets/screenshots/screenshot-2.png" alt="Cards Kids Game - Numbers" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="phone-mockup featured">
+                <div class="phone-screen">
+                    <img src="assets/screenshots/screenshot-3.png" alt="Cards Kids Game - Alphabet" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <img src="assets/screenshots/screenshot-4.png" alt="Cards Kids Game - Directions" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <img src="assets/screenshots/screenshot-5.png" alt="Cards Kids Game - Countries" onerror="this.style.display='none'">
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="why-choose">
-        <h2>Why Choose Cards Kids Game?</h2>
-        <p><strong>Engaging and Educational:</strong> Combines fun and learning to keep kids engaged while educating them on essential topics.</p>
-        <p><strong>Easy to Use:</strong> Designed with children in mind, ensuring they can navigate and use the app with minimal supervision.</p>
-        <p><strong>Safe for Kids:</strong> Provides a secure environment with no ads or in-app purchases, allowing kids to focus on learning.</p>
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <h2>Learning Categories</h2>
+        <p>Explore a variety of educational topics designed to engage young minds</p>
+        <div class="categories-grid">
+            <div class="category-card">
+                <span class="category-icon">1234</span>
+                <h3>1 2 3</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">ABCD</span>
+                <h3>A B C</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#9650;</span>
+                <h3>Shapes</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#127815;</span>
+                <h3>Fruits</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#128584;</span>
+                <h3>Peeka Poo</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#127912;</span>
+                <h3>Colors</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#129517;</span>
+                <h3>Directions</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#127988;</span>
+                <h3>Countries</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#129321;</span>
+                <h3>Feelings</h3>
+            </div>
+            <div class="category-card">
+                <span class="category-icon">&#128247;</span>
+                <h3>Custom</h3>
+            </div>
+        </div>
     </section>
 
-    <section class="download">
-        <h2>Download Cards Kids Game today and make learning an exciting adventure for your kids!</h2>
-        <a href="https://apps.apple.com/ca/app/cards-kids-game/id6504603575" class="download-link" target="_blank">Download on the App Store</a>
+    <!-- Game Modes -->
+    <section class="game-modes" id="modes">
+        <h2>Two Fun Game Modes</h2>
+        <div class="modes-container">
+            <div class="mode-card">
+                <div class="mode-icon">&#127183;</div>
+                <h3>Cards Game</h3>
+                <p>Swipe through beautifully designed flashcards. Tap the play button to hear each item pronounced. Perfect for learning at your own pace!</p>
+                <div class="tab-preview">
+                    <span class="tab-item active">&#9776; Cards Game</span>
+                    <span class="tab-item">&#9638; Match Cards</span>
+                </div>
+            </div>
+            <div class="mode-card">
+                <div class="mode-icon">&#129513;</div>
+                <h3>Match Cards</h3>
+                <p>Test memory and recognition skills! Match pairs of cards in this classic memory game. Fun for kids of all ages!</p>
+                <div class="tab-preview">
+                    <span class="tab-item">&#9776; Cards Game</span>
+                    <span class="tab-item active">&#9638; Match Cards</span>
+                </div>
+            </div>
+        </div>
     </section>
-</div>
 
-<footer>
-    <p>&copy; 2024 Cards Kids Game. All rights reserved.</p>
-</footer>
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2>Why Kids Love It</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#128266;</div>
+                <h3>Voice Feedback</h3>
+                <p>Integrated speech synthesizer helps kids learn pronunciation. Each card speaks its content when tapped, making learning interactive and fun.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127912;</div>
+                <h3>Beautiful Design</h3>
+                <p>Colorful, engaging visuals with smooth animations keep children entertained while they learn. Clean interface is easy for little fingers to navigate.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9881;</div>
+                <h3>Customizable</h3>
+                <p>Parents can customize settings, toggle voice feedback, and even create custom card sets with their own images and words.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128584;</div>
+                <h3>Peeka Poo Game</h3>
+                <p>A special hide-and-reveal game where kids tap to discover hidden fruits. Built-in timer ensures kids take time to learn each item.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128241;</div>
+                <h3>Offline Ready</h3>
+                <p>Works completely offline. No internet required once installed. Perfect for car rides, flights, or anywhere without WiFi.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#10084;</div>
+                <h3>Made With Love</h3>
+                <p>Designed by parents, for parents. Every feature is carefully crafted to create the best learning experience for your little ones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section class="safety-section">
+        <h2>Safe & Secure</h2>
+        <p>We take your child's safety seriously. Cards Kids Game is designed with privacy and security in mind.</p>
+        <div class="safety-badges">
+            <div class="safety-badge">
+                <span>&#128683;</span>
+                <p>No Ads</p>
+            </div>
+            <div class="safety-badge">
+                <span>&#128176;</span>
+                <p>No In-App Purchases</p>
+            </div>
+            <div class="safety-badge">
+                <span>&#128274;</span>
+                <p>No Data Collection</p>
+            </div>
+            <div class="safety-badge">
+                <span>&#128119;</span>
+                <p>Kid-Friendly</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+        <h2>Start Learning Today!</h2>
+        <p>Download Cards Kids Game and make education an exciting adventure for your kids.</p>
+        <a href="https://apps.apple.com/ca/app/cards-kids-game/id6504603575" class="download-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Download on App Store
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="README.html">Privacy Policy</a>
+            <a href="mailto:CardsKidsGameAE_tech@outlook.com">Contact Us</a>
+        </div>
+        <p>&copy; 2025 Cards Kids Game. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
