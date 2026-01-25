@@ -358,11 +358,28 @@
             font-weight: 600;
             font-size: 0.9rem;
             color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-item:hover {
+            background: rgba(255,150,150,0.2);
         }
 
         .tab-item.active {
             background: rgba(255,100,100,0.3);
             color: #1a73e8;
+        }
+
+        .combined-mode {
+            width: 350px;
+        }
+
+        .combined-mode .mode-icon {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Safety Section */
@@ -646,26 +663,54 @@
     <section class="game-modes" id="modes">
         <h2>Two Fun Game Modes</h2>
         <div class="modes-container">
-            <div class="mode-card">
-                <div class="mode-icon">&#127183;</div>
-                <h3>Cards Game</h3>
-                <p>Swipe through beautifully designed flashcards. Tap the play button to hear each item pronounced. Perfect for learning at your own pace!</p>
-                <div class="tab-preview">
-                    <span class="tab-item active">&#9776; Cards Game</span>
-                    <span class="tab-item">&#9638; Match Cards</span>
+            <div class="mode-card combined-mode">
+                <div class="mode-icon" id="mode-icon">
+                    <svg viewBox="0 0 80 100" width="60" height="75" id="cards-icon">
+                        <rect x="2" y="2" width="76" height="96" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                        <text x="10" y="25" font-size="18" font-weight="bold" fill="#e63946">7</text>
+                        <text x="8" y="42" font-size="16" fill="#e63946">&#9829;</text>
+                        <text x="40" y="60" font-size="28" fill="#e63946" text-anchor="middle">&#9829;</text>
+                        <text x="70" y="90" font-size="18" font-weight="bold" fill="#e63946" text-anchor="end">7</text>
+                        <text x="72" y="78" font-size="16" fill="#e63946" text-anchor="end">&#9829;</text>
+                    </svg>
+                    <span id="match-icon" style="display: none; font-size: 4rem;">&#129513;</span>
                 </div>
-            </div>
-            <div class="mode-card">
-                <div class="mode-icon">&#129513;</div>
-                <h3>Match Cards</h3>
-                <p>Test memory and recognition skills! Match pairs of cards in this classic memory game. Fun for kids of all ages!</p>
+                <h3 id="mode-title">Cards Game</h3>
+                <p id="mode-description">Swipe through beautifully designed flashcards. Tap the play button to hear each item pronounced. Perfect for learning at your own pace!</p>
                 <div class="tab-preview">
-                    <span class="tab-item">&#9776; Cards Game</span>
-                    <span class="tab-item active">&#9638; Match Cards</span>
+                    <span class="tab-item active" id="tab-cards" onclick="switchMode('cards')">&#9776; Cards Game</span>
+                    <span class="tab-item" id="tab-match" onclick="switchMode('match')">&#9638; Match Cards</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function switchMode(mode) {
+            const cardsIcon = document.getElementById('cards-icon');
+            const matchIcon = document.getElementById('match-icon');
+            const title = document.getElementById('mode-title');
+            const description = document.getElementById('mode-description');
+            const tabCards = document.getElementById('tab-cards');
+            const tabMatch = document.getElementById('tab-match');
+
+            if (mode === 'cards') {
+                cardsIcon.style.display = 'block';
+                matchIcon.style.display = 'none';
+                title.textContent = 'Cards Game';
+                description.textContent = 'Swipe through beautifully designed flashcards. Tap the play button to hear each item pronounced. Perfect for learning at your own pace!';
+                tabCards.classList.add('active');
+                tabMatch.classList.remove('active');
+            } else {
+                cardsIcon.style.display = 'none';
+                matchIcon.style.display = 'block';
+                title.textContent = 'Match Cards';
+                description.textContent = 'Test memory and recognition skills! Match pairs of cards in this classic memory game. Fun for kids of all ages!';
+                tabCards.classList.remove('active');
+                tabMatch.classList.add('active');
+            }
+        }
+    </script>
 
     <!-- Features Section -->
     <section class="features-section" id="features">
